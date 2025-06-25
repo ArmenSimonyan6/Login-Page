@@ -1,0 +1,23 @@
+header {
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  background-color: $color_white;
+}
+
+nav {
+  padding: 20px;
+}
+
+.navbar {
+  @include flex_align_between;
+
+  width: 100%;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: $color_blue;
+}
