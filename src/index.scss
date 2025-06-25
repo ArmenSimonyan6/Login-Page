@@ -1,11 +1,9 @@
 :root {
-  line-height: 1.5;
-  font-weight: 400;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: $color_white;
+  background-color: $color_bg_main;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,7 +13,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: $color_blue;
   text-decoration: inherit;
 }
 
