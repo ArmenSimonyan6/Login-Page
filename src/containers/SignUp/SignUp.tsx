@@ -99,17 +99,16 @@ const SignUp = () => {
             </div>
           </div>
           <div className={styles.formWrapper__submit}>
-            <Button variant="dark">Create account</Button>
+            <Button variant="dark" text="Create account" />
           </div>
           <div className={styles.formWrapper__google}>
             <Button
+              icon={GoogleIcon}
               variant="primary"
               onClick={handleSignUpGoogle}
               type="button"
-            >
-              <img src={GoogleIcon} />
-              Continue with Google
-            </Button>
+              text="Continue with Google"
+            ></Button>
           </div>
           <div className={styles.formWrapper__footer}>
             <span className={styles.formWrapper__footer__subTitle}>

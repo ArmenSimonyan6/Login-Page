@@ -1,6 +1,8 @@
 import type { PropsWithChildren } from "react";
 
 export interface IButtonProps {
+  text: string;
+  icon?: string;
   disabled?: boolean;
   className?: string;
   type?: "button" | "submit";

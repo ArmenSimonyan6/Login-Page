@@ -91,9 +91,12 @@ const ForgotPassword = () => {
             </div>
           </div>
           <div className={styles.formWrapper__submit}>
-            <Button type="submit" disabled={isSubmitting} variant="dark">
-              Send Recovery Email
-            </Button>
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              variant="dark"
+              text="Send Recovery Email"
+            />
           </div>
           {status && (
             <p

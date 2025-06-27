@@ -100,9 +100,7 @@ const ResetPassword = () => {
             </div>
 
             <div className={styles.formWrapper__submit}>
-              <Button type="submit" variant="dark">
-                Reset Password
-              </Button>
+              <Button type="submit" variant="dark" text="Reset Password" />
             </div>
           </form>
         )}

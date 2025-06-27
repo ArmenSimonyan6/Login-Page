@@ -87,7 +87,7 @@ const SignIn = () => {
             </button>
           </div>
           <div className={styles.formWrapper__submit}>
-            <Button variant="dark">Log In</Button>
+            <Button variant="dark" text="Log In" />
           </div>
           {error && <p className={styles.formWrapper__error}>{error}</p>}
           <div className={styles.formWrapper__footer}>
