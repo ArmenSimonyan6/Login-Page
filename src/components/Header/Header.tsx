@@ -5,12 +5,10 @@ import { ROUTES } from "../../routes/Routes";
 export const Header = () => (
   <header>
     <nav>
-      <div className={styles.navbar}>
-        <p className={styles.logo}>Login</p>
-        <ul>
-          <Link to={ROUTES.HOME}>Home</Link>
-        </ul>
-      </div>
+      <p className={styles.logo}>Login</p>
+      <ul>
+        <Link to={ROUTES.HOME}>Home</Link>
+      </ul>
     </nav>
   </header>
 );

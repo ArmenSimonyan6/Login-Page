@@ -8,6 +8,7 @@ import { contactUsSchema } from "../../schemas";
 import { yupResolver } from "@hookform/resolvers/yup";
 import type { TFormData } from "../SignIn/SignIn.props";
 import { useAuth } from "../../context/AuthContext/AuthContex";
+import { Button, Input } from "../../components/shared";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -61,58 +62,67 @@ const SignUp = () => {
   };
 
   return (
-    <div className={styles.loginPage}>
-      <div className={styles.formDiv}>
+    <div className={styles.container}>
+      <div className={styles.formWrapper}>
         <div>
-          <h2 className={styles.formDiv__title}>Create an account</h2>
+          <h2 className={styles.formWrapper__title}>Create an account</h2>
         </div>
 
         <form onSubmit={handleSubmit(signUp)} autoComplete="off">
-          <div className={styles.inputs}>
-            <div>
+          <div>
+            <div className={styles.formWrapper__inputs}>
               <span>Email</span>
-              <input
+              <Input
                 type="email"
+                variant="light"
                 {...register("email")}
                 placeholder="Enter your email"
-                className={styles.inputEmail}
               />
               {errors.email && (
-                <p className={styles.error}>{errors.email.message}</p>
+                <p className={styles.formWrapper__error}>
+                  {errors.email.message}
+                </p>
               )}
-            </div>
-            <div>
+
               <span>Password</span>
-              <input
+              <Input
+                variant="bold"
                 type="password"
                 {...register("password")}
                 placeholder="Enter your password"
-                className={styles.inputPassword}
               />
               {errors.password && (
-                <p className={styles.error}>{errors.password.message}</p>
+                <p className={styles.formWrapper__error}>
+                  {errors.password.message}
+                </p>
               )}
             </div>
           </div>
-          <div className={styles.buttonLogIn}>
-            <button>Create account</button>
+          <div className={styles.formWrapper__submit}>
+            <Button variant="dark">Create account</Button>
           </div>
-          <div className={styles.buttonGoogle}>
-            <button onClick={handleSignUpGoogle} type="button">
+          <div className={styles.formWrapper__google}>
+            <Button
+              variant="primary"
+              onClick={handleSignUpGoogle}
+              type="button"
+            >
               <img src={GoogleIcon} />
               Continue with Google
-            </button>
+            </Button>
           </div>
-          <div className={styles.footerLogin}>
-            <span className={styles.textFooter}>Already Have An Account?</span>
+          <div className={styles.formWrapper__footer}>
+            <span className={styles.formWrapper__footer__subTitle}>
+              Already Have An Account?
+            </span>
             <button
               type="button"
-              className={styles.buttonBlue}
+              className={styles.formWrapper__footerButton}
               onClick={() => navigate(ROUTES.SIGN_IN)}
             >
               Sign In
             </button>
-            {error && <p className={styles.error}>{error}</p>}
+            {error && <p className={styles.formWrapper__error}>{error}</p>}
           </div>
         </form>
       </div>

@@ -2,11 +2,12 @@ import { ROUTES } from "../../routes";
 import styles from "./SignIn.module.scss";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { loginSchema } from "../../schemas";
 import { useNavigate } from "react-router-dom";
 import type { TFormData } from "./SignIn.props";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "../../schemas/login.schema";
 import { useAuth } from "../../context/AuthContext/AuthContex";
+import { Button, Input } from "../../components/shared";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -44,57 +45,58 @@ const SignIn = () => {
   }, [navigate, session]);
 
   return (
-    <div className={styles.loginPage}>
-      <div className={styles.formDiv}>
+    <div className={styles.container}>
+      <div className={styles.formWrapper}>
         <div>
-          <h2 className={styles.formDiv__title}>Login to your account</h2>
+          <h2 className={styles.formWrapper__title}>Login to your account</h2>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-          <div className={styles.inputs}>
-            <div>
+          <div>
+            <div className={styles.formWrapper__inputs}>
               <span>Email</span>
-              <input
+              <Input
                 type="email"
+                variant="light"
                 {...register("email")}
                 placeholder="Enter your email"
-                className={styles.inputEmail}
               />
               {errors.email && (
-                <p className={styles.error}>{errors.email?.message}</p>
+                <p className={styles.formWrapper__error}>
+                  {errors.email?.message}
+                </p>
               )}
-            </div>
-            <div>
+
               <span>Password</span>
-              <input
+              <Input
+                variant="bold"
                 type="password"
                 {...register("password")}
                 placeholder="Enter your password"
-                className={styles.inputPassword}
               />
               {errors.password && (
-                <p className={styles.error}>{errors.password?.message}</p>
+                <p className={styles.formWrapper__error}>
+                  {errors.password?.message}
+                </p>
               )}
             </div>
           </div>
-          <div className={styles.forgot}>
-            <button
-              type="button"
-              className={styles.buttonBlue}
-              onClick={() => navigate(ROUTES.FORGOT_PWD)}
-            >
+          <div className={styles.formWrapper__forgot}>
+            <button type="button" onClick={() => navigate(ROUTES.FORGOT_PWD)}>
               Forgot password?
             </button>
           </div>
-          <div className={styles.buttonLogIn}>
-            <button>Log In</button>
+          <div className={styles.formWrapper__submit}>
+            <Button variant="dark">Log In</Button>
           </div>
-          {error && <p className={styles.error}>{error}</p>}
-          <div className={styles.footerLogin}>
-            <span className={styles.textFooter}>Don't Have An Account?</span>
+          {error && <p className={styles.formWrapper__error}>{error}</p>}
+          <div className={styles.formWrapper__footer}>
+            <span className={styles.formWrapper__footer__subtitle}>
+              Don't Have An Account?
+            </span>
             <button
               type="button"
-              className={styles.buttonBlue}
+              className={styles.formWrapper__footerButton}
               onClick={() =>
                 navigate(ROUTES.SIGN_UP, { state: { fromNavigate: true } })
               }

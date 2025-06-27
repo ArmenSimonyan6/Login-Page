@@ -7,6 +7,7 @@ import styles from "./ResetPassword.module.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import type { TPassword } from "./ResetPassword.props";
 import { supabase } from "../../supabase/supabaseClient";
+import { Button, Input } from "../../components/shared";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -71,33 +72,37 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className={styles.loginPage}>
-      <div className={styles.formDiv}>
-        <h2 className={styles.formDiv__title}>Reset Password</h2>
+    <div className={styles.container}>
+      <div className={styles.formWrapper}>
+        <h2 className={styles.formWrapper__title}>Reset Password</h2>
 
         {!isReady ? (
           <p>Preparing your session...</p>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-            <div className={styles.inputs}>
+            <div className={styles.formWrapper__inputs}>
               <div>
                 <span>New Password</span>
-                <input
+                <Input
+                  variant="bold"
                   type="password"
+                  placeholder="New password"
                   {...register("password", {
                     required: "Password is required",
                   })}
-                  placeholder="New password"
-                  className={styles.inputPassword}
                 />
                 {errors.password && (
-                  <p className={styles.error}>{errors.password?.message}</p>
+                  <p className={styles.formWrapper__error}>
+                    {errors.password?.message}
+                  </p>
                 )}
               </div>
             </div>
 
-            <div className={styles.buttonLogIn}>
-              <button type="submit">Reset Password</button>
+            <div className={styles.formWrapper__submit}>
+              <Button type="submit" variant="dark">
+                Reset Password
+              </Button>
             </div>
           </form>
         )}

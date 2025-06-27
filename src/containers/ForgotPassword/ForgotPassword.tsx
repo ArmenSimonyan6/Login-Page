@@ -7,6 +7,9 @@ import { useAuth } from "../../context/AuthContext/AuthContex";
 import type { IFormData, TStatus } from "./ForgotPassword.props";
 import type { IEmailOnly } from "../../context/AuthContext/AuthContext.props";
 
+import cx from "classnames";
+import { Button, Input } from "../../components/shared";
+
 const ForgotPassword = () => {
   const schema = contactUsSchema.pick(["email"]);
 
@@ -22,6 +25,23 @@ const ForgotPassword = () => {
   const [status, setStatus] = useState<TStatus | null>(null);
 
   const onSubmit = async ({ email }: IEmailOnly) => {
+    const DateNow = Date.now();
+    const recoveryKey = `resetCooldown_${email}`;
+    const lastSentRequest = Number(localStorage.getItem(recoveryKey));
+
+    const cooldown = 60 * 1000;
+    const remainingTime = cooldown - (DateNow - lastSentRequest);
+
+    if (lastSentRequest && remainingTime > 0) {
+      setStatus({
+        type: "error",
+        message: `Error: For security purposes, you can only request this after ${Math.ceil(
+          remainingTime / 1000
+        )} seconds.`,
+      });
+      return;
+    }
+
     const res = await resetPassword({ email });
 
     const isLimitError = res.error
@@ -35,6 +55,9 @@ const ForgotPassword = () => {
       });
       return;
     }
+
+    localStorage.setItem(recoveryKey, DateNow.toString());
+
     setStatus({
       type: "success",
       message: "You'll receive an email to recover your password.",
@@ -46,41 +69,38 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className={styles.parentDiv}>
-      <div className={styles.formDiv}>
-        <h2 className={styles.formDiv__title}>Reset Password</h2>
-        <form
-          autoComplete="off"
-          className={styles.forgotForm}
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className={styles.inputs}>
+    <div className={styles.container}>
+      <div className={styles.formWrapper}>
+        <h2 className={styles.formWrapper__title}>Reset Password</h2>
+        <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.formWrapper__inputs}>
             <div>
               <span>Forgot Password?</span>
-              <input
+              <Input
                 type="email"
+                variant="light"
                 {...register("email")}
                 placeholder="Enter your email"
-                className={styles.inputPassword}
               />
 
               {errors.email && (
-                <p className={styles.errorMessage}>{errors.email?.message}</p>
+                <p className={styles.formWrapper__error}>
+                  {errors.email?.message}
+                </p>
               )}
             </div>
           </div>
-          <div className={styles.buttonLogIn}>
-            <button type="submit" disabled={isSubmitting}>
+          <div className={styles.formWrapper__submit}>
+            <Button type="submit" disabled={isSubmitting} variant="dark">
               Send Recovery Email
-            </button>
+            </Button>
           </div>
           {status && (
             <p
-              className={
-                status.type === "error"
-                  ? styles.statusError
-                  : styles.statusSuccess
-              }
+              className={cx({
+                [styles.formWrapper__error]: status.type === "error",
+                [styles.formWrapper__success]: status.type === "success",
+              })}
             >
               {status.message}
             </p>

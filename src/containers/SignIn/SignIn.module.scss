@@ -1,13 +1,13 @@
-.loginPage {
+.container {
   @include flex_center;
 
-  width: 550px;
+  width: 100%;
   max-width: 550px;
   border-radius: 25px;
   background-color: $color_white;
 }
 
-.formDiv {
+.formWrapper {
   width: 395px;
   padding: 48px 72px;
   color: $color_black;
@@ -15,74 +15,61 @@
   &__title {
     font-size: 30px;
   }
-}
 
-button {
-  border: none;
-  background: none;
-}
-
-.buttonBlue {
-  color: $color_blue;
-}
-
-.inputs {
-  div {
+  &__inputs {
     @include flex_column;
 
     margin: 20px 0;
     text-align: start;
   }
 
-  input {
-    padding: 16px;
-    outline: none;
-    border-radius: 10px;
-    color: $color_gray_900;
-    background-color: $color_white;
-  }
-}
+  &__submit {
+    @include flex_center;
 
-.inputEmail {
-  border: 3px solid $color_blue_100;
-}
-
-.inputPassword {
-  border: 1px solid $color_gray_100;
-}
-
-.buttonLogIn {
-  @include flex_center;
-
-  width: 100%;
-  margin: 24px 0;
-
-  button {
     width: 100%;
-    padding: 19px 0;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 10px;
-    background-color: $color_blue;
+    margin: 24px 0;
   }
-}
 
-.forgot {
-  @include flex_justify_end;
+  &__google {
+    @include flex_center;
 
-  width: 100%;
-}
-
-.footerLogin {
-  margin: 20px 0;
-
-  .textFooter {
-    color: $color_gray_300;
+    width: 100%;
+    margin: 24px 0;
   }
-}
 
-.error {
-  margin: 5px 0;
-  font-size: 13px;
-  color: $color_error;
+  &__forgot {
+    @include flex_justify_end;
+
+    width: 100%;
+
+    button {
+      color: $color_blue;
+    }
+  }
+
+  &__footer {
+    margin: 20px 0;
+
+    &__subTitle {
+      color: $color_gray_300;
+    }
+  }
+
+  &__error {
+    margin: 5px 0;
+    font-size: 13px;
+    color: $color_error;
+  }
+
+  &__footerButton {
+    color: $color_blue;
+  }
+
+  &__footer {
+    margin: 20px 0;
+
+    &__subtitle {
+      color: $color_gray_300;
+    }
+  }
 }

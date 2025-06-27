@@ -4,20 +4,18 @@ header {
   right: 0;
   position: fixed;
   background-color: $color_white;
-}
 
-nav {
-  padding: 20px;
-}
+  nav {
+    @include flex_align_between;
 
-.navbar {
-  @include flex_align_between;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 
-  width: 100%;
-}
-
-.logo {
-  font-size: 20px;
-  font-weight: bold;
-  color: $color_blue;
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: $color_blue;
+    }
+  }
 }

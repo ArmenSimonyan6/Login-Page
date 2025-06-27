@@ -1,0 +1,21 @@
+.dark {
+  width: 100%;
+  padding: 19px 0;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: $color_blue;
+}
+
+.primary {
+  @include flex_center;
+
+  gap: 8px;
+  width: 100%;
+  padding: 19px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: $color_blue;
+  border-radius: 10px;
+  background-color: $color_blue_100;
+}
