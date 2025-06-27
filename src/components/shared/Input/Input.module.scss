@@ -1,0 +1,19 @@
+.light {
+  padding: 16px;
+  margin: 10px 0;
+  outline: none;
+  border-radius: 10px;
+  color: $color_gray_900;
+  background-color: $color_white;
+  border: 3px solid $color_blue_100;
+}
+
+.bold {
+  padding: 16px;
+  margin: 10px 0;
+  outline: none;
+  border-radius: 10px;
+  color: $color_gray_900;
+  background-color: $color_white;
+  border: 1px solid $color_gray_100;
+}

@@ -1,14 +1,20 @@
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+// }
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
-  color-scheme: light dark;
   color: $color_white;
+  color-scheme: light dark;
   background-color: $color_bg_main;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -20,11 +26,13 @@ a {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  place-items: center;
 }
 
 button {
+  border: none;
   cursor: pointer;
+  background: none;
 }
