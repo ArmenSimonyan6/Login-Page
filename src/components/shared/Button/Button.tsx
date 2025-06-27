@@ -4,9 +4,10 @@ import type { TButton } from "./Button.props";
 
 export const Button = ({
   type,
+  icon,
+  text,
   onClick,
   variant,
-  children,
   disabled,
   className = "",
 }: TButton) => {
@@ -21,7 +22,8 @@ export const Button = ({
         className
       )}
     >
-      {children}
+      {!!icon && <img src={icon} />}
+      {text}
     </button>
   );
 };
